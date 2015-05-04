@@ -1,19 +1,20 @@
 ## Introduction
 
-esup-koha is a JSR168 portlet that displays patron information and loans information of the KOHA account of the portal current user.
+esup-koha is a JSR168 portlet that displays patron information and loans information of the KOHA [http://koha-community.org] account of the portal current user.
 
 The user can also renew its loans.
 
 ## Installation
 
-you can package the war with this command :
+You can package the war with this command :
 ```
 mvn clean package
 ```
 
 Next, you can deploy the portlet - with uPortal4 for example, you can deploy the portlet with a command like this one (from the uPortal directory) :
+```
 ant deployPortletApp -DportletApp=/opt/esup-koha/target/esup-koha.war
-
+```
 
 ## Configurations
 
