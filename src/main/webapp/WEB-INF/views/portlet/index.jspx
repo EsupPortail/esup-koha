@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div class="esupkoha" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:portlet="http://java.sun.com/portlet"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<portlet:defineObjects />
+
+	<c:set var="n">
+		<portlet:namespace />
+	</c:set>
+	
+	<spring:url value="/css/esup-koha.css" var="koahCssUrl" />
+	<link rel="stylesheet" href="${koahCssUrl}" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+  	<script src="//code.jquery.com/jquery-1.10.2.js"><!-- --></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"><!-- --></script>
+  	<script>
+	  $(function() {
+	    $(".esupkoha .accordion-patron" ).accordion({
+	    	heightStyle: 'content',
+	    	collapsible: true
+	    });
+	    $(".esupkoha .accordion-loans" ).accordion({
+	    	heightStyle: 'content',
+	    	active:false,
+	    	collapsible: true
+	    });
+	  });
+	</script>
+
+	<portlet:renderURL portletMode="VIEW" var="homeUrl" />
+	<portlet:renderURL portletMode="VIEW" var="adminUrl">
+		<portlet:param name="action" value="admin" />
+		<portlet:param name="sortFieldName" value="transactionDate" />
+		<portlet:param name="sortOrder" value="desc" />
+	</portlet:renderURL>
+
+	<!--  TODO : admin view ??
+	<h3 class="portlet-section-header" role="header">
+		<a href="${homeUrl}"
+			class="${active == 'home' ? 'active' : 'nonActive'}"><spring:message
+				code="menu.home" /></a> |
+		<c:if test="${isAdmin or isManager}">
+			| <a href="${adminUrl}"><spring:message code="menu.admin" /></a>
+		</c:if>
+	</h3>
+	-->
+	
+	<c:if test="${not empty message}">
+		<span class="important"><spring:message code="${message}"/></span>
+	</c:if>
+
+
+	<div class="portlet-section">
+
+
+		<div class="portlet-section-body">
+			<h3><spring:message code="patronInfo" /></h3>
+			
+			<div class="accordion-patron">
+			
+				<h4><spring:message code="addresses" /></h4>
+				
+					<dl>
+						<c:if test="${not empty patronInfo.title}"><dt><spring:message code="borrowers.title"/></dt><dd>${patronInfo.title}</dd></c:if>
+						<c:if test="${not empty patronInfo.surname}"><dt><spring:message code="borrowers.surname"/></dt><dd>${patronInfo.surname}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactsurname}"><dt><spring:message code="borrowers.altcontactsurname"/></dt><dd>${patronInfo.altcontactsurname}</dd></c:if>
+						<c:if test="${not empty patronInfo.othernames}"><dt><spring:message code="borrowers.othernames"/></dt><dd>${patronInfo.othernames}</dd></c:if>
+											
+											
+						<c:if test="${not empty patronInfo.emailpro}"><dt><spring:message code="borrowers.emailpro"/></dt><dd>${patronInfo.emailpro}</dd></c:if>
+						<c:if test="${not empty patronInfo.email}"><dt><spring:message code="borrowers.email"/></dt><dd>${patronInfo.email}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_email}"><dt><spring:message code="borrowers.B_email"/></dt><dd>${patronInfo.b_email}</dd></c:if>
+						
+
+						<c:if test="${not empty patronInfo.phonepro}"><dt><spring:message code="borrowers.phonepro"/></dt><dd>${patronInfo.phonepro}</dd></c:if>
+						<c:if test="${not empty patronInfo.mobile}"><dt><spring:message code="borrowers.mobile"/></dt><dd>${patronInfo.mobile}</dd></c:if>
+						<c:if test="${not empty patronInfo.phone}"><dt><spring:message code="borrowers.phone"/></dt><dd>${patronInfo.phone}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_phone}"><dt><spring:message code="borrowers.B_phone"/></dt><dd>${patronInfo.b_phone}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactphone}"><dt><spring:message code="borrowers.altcontactphone"/></dt><dd>${patronInfo.altcontactphone}</dd></c:if>
+						<c:if test="${not empty patronInfo.fax}"><dt><spring:message code="borrowers.fax"/></dt><dd>${patronInfo.fax}</dd></c:if>
+						
+						
+						<c:if test="${not empty patronInfo.altcontactaddress1}"><dt><spring:message code="borrowers.altcontactaddress1"/></dt><dd>${patronInfo.altcontactaddress1}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactaddress2}"><dt><spring:message code="borrowers.altcontactaddress2"/></dt><dd>${patronInfo.altcontactaddress2}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactaddress3}"><dt><spring:message code="borrowers.altcontactaddress3"/></dt><dd>${patronInfo.altcontactaddress3}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactzipcode}"><dt><spring:message code="borrowers.altcontactzipcode"/></dt><dd>${patronInfo.altcontactzipcode}</dd></c:if>
+						<c:if test="${not empty patronInfo.altcontactcountry}"><dt><spring:message code="borrowers.altcontactcountry"/></dt><dd>${patronInfo.altcontactcountry}</dd></c:if>
+						
+						<c:if test="${not empty patronInfo.streetnumber}"><dt><spring:message code="borrowers.streetnumber"/></dt><dd>${patronInfo.streetnumber}</dd></c:if>
+						<c:if test="${not empty patronInfo.address}"><dt><spring:message code="borrowers.address"/></dt><dd>${patronInfo.address}</dd></c:if>
+						<c:if test="${not empty patronInfo.address2}"><dt><spring:message code="borrowers.address2"/></dt><dd>${patronInfo.address2}</dd></c:if>
+						<c:if test="${not empty patronInfo.city}"><dt><spring:message code="borrowers.city"/></dt><dd>${patronInfo.city}</dd></c:if>
+						<c:if test="${not empty patronInfo.zipcode}"><dt><spring:message code="borrowers.zipcode"/></dt><dd>${patronInfo.zipcode}</dd></c:if>
+						<c:if test="${not empty patronInfo.country}"><dt><spring:message code="borrowers.country"/></dt><dd>${patronInfo.country}</dd></c:if>
+
+						<c:if test="${not empty patronInfo.b_address}"><dt><spring:message code="borrowers.B_address"/></dt><dd>${patronInfo.b_address}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_address2}"><dt><spring:message code="borrowers.B_address2"/></dt><dd>${patronInfo.b_address2}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_city}"><dt><spring:message code="borrowers.B_city"/></dt><dd>${patronInfo.b_city}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_zipcode}"><dt><spring:message code="borrowers.B_zipcode"/></dt><dd>${patronInfo.b_zipcode}</dd></c:if>
+						<c:if test="${not empty patronInfo.b_country}"><dt><spring:message code="borrowers.B_country"/></dt><dd>${patronInfo.b_country}</dd></c:if>
+						
+												
+						<c:if test="${not empty patronInfo.contactnote}"><dt><spring:message code="borrowers.contactnote"/></dt><dd>${patronInfo.contactnote}</dd></c:if>
+					</dl>	
+
+					
+						<h4><spring:message code="card" /></h4>
+					
+						<dl>
+							<c:if test="${not empty patronInfo.cardnumber}"><dt><spring:message code="borrowers.cardnumber"/></dt><dd>${patronInfo.cardnumber}</dd></c:if>
+							<c:if test="${not empty patronInfo.lost}"><dt><spring:message code="borrowers.lost"/></dt><dd>${patronInfo.lost}</dd></c:if>
+						</dl>	
+						
+						<h4><spring:message code="borrow" /></h4>
+											
+						<dl>
+							<c:if test="${not empty patronInfo.category_type}"><dt><spring:message code="koha.category_type"/></dt><dd>${patronInfo.category_type}</dd></c:if>
+							<c:if test="${not empty patronInfo.categorycode}"><dt><spring:message code="borrowers.categorycode"/></dt><dd>${patronInfo.categorycode}</dd></c:if>
+							<c:if test="${not empty patronInfo.endguaranteedate}"><dt><spring:message code="koha.endguaranteedate"/></dt><dd>${patronInfo.endguaranteedate}</dd></c:if>
+							<c:if test="${not empty patronInfo.borrowernumber}"><dt><spring:message code="borrowers.borrowernumber"/></dt><dd>${patronInfo.borrowernumber}</dd></c:if>
+							<c:if test="${not empty patronInfo.branchcode}"><dt><spring:message code="borrowers.branchcode"/></dt><dd>${patronInfo.branchcode}</dd></c:if>
+							<c:if test="${not empty patronInfo.amountoutstanding}"><dt><spring:message code="koha.amountoutstanding"/></dt><dd>${patronInfo.amountoutstanding}</dd></c:if>
+							<c:if test="${not empty patronInfo.description}"><dt><spring:message code="koha.description"/></dt><dd>${patronInfo.description}</dd></c:if>
+							<c:if test="${not empty patronInfo.enrolmentperiod}"><dt><spring:message code="koha.enrolmentperiod"/></dt><dd>${patronInfo.enrolmentperiod}</dd></c:if>				
+							<c:if test="${not empty patronInfo.dateenrolled}"><dt><spring:message code="borrowers.dateenrolled"/></dt><dd>${patronInfo.dateenrolled}</dd></c:if>
+							<c:if test="${not empty patronInfo.guarantorid}"><dt><spring:message code="borrowers.guarantorid"/></dt><dd>${patronInfo.guarantorid}</dd></c:if>
+							<c:if test="${not empty patronInfo.borrowernotes}"><dt><spring:message code="borrowers.borrowernotes"/></dt><dd>${patronInfo.borrowernotes}</dd></c:if>
+							<c:if test="${not empty patronInfo.dateexpiry}"><dt><spring:message code="borrowers.dateexpiry"/></dt><dd>${patronInfo.dateexpiry}</dd></c:if>
+							<c:if test="${not empty patronInfo.sort2}"><dt><spring:message code="borrowers.sort2"/></dt><dd>${patronInfo.sort2}</dd></c:if>
+							<c:if test="${not empty patronInfo.gonenoaddress}"><dt><spring:message code="borrowers.gonenoaddress"/></dt><dd>${patronInfo.gonenoaddress}</dd></c:if>
+							<c:if test="${not empty patronInfo.branchname}"><dt><spring:message code="branches.branchname"/></dt><dd>${patronInfo.branchname}</dd></c:if>
+							<c:if test="${not empty patronInfo.lostcomment}"><dt><spring:message code="borrowers.lostcomment"/></dt><dd>${patronInfo.lostcomment}</dd></c:if>
+							<c:if test="${not empty patronInfo.gonenoaddresscomment}"><dt><spring:message code="borrowers.gonenoaddresscomment"/></dt><dd>${patronInfo.gonenoaddresscomment}</dd></c:if>
+							<c:if test="${not empty patronInfo.opacnote}"><dt><spring:message code="borrowers.opacnote"/></dt><dd>${patronInfo.opacnote}</dd></c:if>
+							<c:if test="${not empty patronInfo.altcontactfirstname}"><dt><spring:message code="borrowers.altcontactfirstname"/></dt><dd>${patronInfo.altcontactfirstname}</dd></c:if>
+							<c:if test="${not empty patronInfo.debarredcomment}"><dt><spring:message code="borrowers.debarredcomment"/></dt><dd>${patronInfo.debarredcomment}</dd></c:if>
+							<c:if test="${not empty patronInfo.sort1}"><dt><spring:message code="borrowers.sort1"/></dt><dd>${patronInfo.sort1}</dd></c:if>
+						</dl>
+					
+			</div>
+			
+		</div>
+
+		<div class="portlet-section-body">
+			<h3><spring:message code="loans" /></h3>
+
+			<div class="accordion-loans">
+			
+			<c:forEach items="${patronInfo.loans}" var="loan">
+			
+				<h4><spring:message code="loanTitle" /> ${loan.isbn} - ${loan.title}</h4>
+				
+				<div>
+				
+				<dl>
+				
+					<c:if test="${not empty loan.title}"><dt><spring:message code="koha.loan.title"/></dt><dd>${loan.title}</dd></c:if>
+					<c:if test="${not empty loan.author}"><dt><spring:message code="biblio.author"/></dt><dd>${loan.author}</dd></c:if>
+					<c:if test="${not empty loan.publishercode}"><dt><spring:message code="biblioitems.publishercode"/></dt><dd>${loan.publishercode}</dd></c:if>
+					<c:if test="${not empty loan.isbn}"><dt><spring:message code="biblioitems.isbn"/></dt><dd>${loan.isbn}</dd></c:if>
+					<c:if test="${not empty loan.date_due}"><dt><spring:message code="koha.loan.date_due"/></dt><dd>${loan.date_due}</dd></c:if>
+					<c:if test="${not empty loan.overdue}"><dt><spring:message code="koha.loan.overdue"/></dt><dd>${loan.overdue}</dd></c:if>
+					<c:if test="${not empty loan.issuedate}"><dt><spring:message code="koha.loan.issuedate"/></dt><dd>${loan.issuedate}</dd></c:if>
+					<c:if test="${not empty loan.itemnumber}"><dt><spring:message code="koha.loan.itemnumber"/></dt><dd>${loan.itemnumber}</dd></c:if>
+					<c:if test="${not empty loan.borrowernumber}"><dt><spring:message code="borrowers.borrowernumber"/></dt><dd>${loan.borrowernumber}</dd></c:if>
+					<c:if test="${not empty loan.branchcode}"><dt><spring:message code="borrowers.branchcode"/></dt><dd>${loan.branchcode}</dd></c:if>				
+					<c:if test="${not empty loan.barcode}"><dt><spring:message code="koha.loan.barcode"/></dt><dd>${loan.barcode}</dd></c:if>
+					<c:if test="${not empty loan.datelastseen}"><dt><spring:message code="koha.loan.datelastseen"/></dt><dd>${loan.datelastseen}</dd></c:if>
+					<c:if test="${not empty loan.number}"><dt><spring:message code="koha.loan.number"/></dt><dd>${loan.number}</dd></c:if>
+					<c:if test="${not empty loan.itemtype}"><dt><spring:message code="biblioitems.itemtype"/></dt><dd>${loan.itemtype}</dd></c:if>				
+					<c:if test="${not empty loan.timestamp}"><dt><spring:message code="biblio.timestamp"/></dt><dd>${loan.timestamp}</dd></c:if>
+					<c:if test="${not empty loan.datecreated}"><dt><spring:message code="biblio.datecreated"/></dt><dd>${loan.datecreated}</dd></c:if>
+					<c:if test="${not empty loan.dateaccessioned}"><dt><spring:message code="koha.loan.dateaccessioned"/></dt><dd>${loan.dateaccessioned}</dd></c:if>
+					<c:if test="${not empty loan.notes}"><dt><spring:message code="biblio.notes"/></dt><dd>${loan.notes}</dd></c:if>
+					<c:if test="${not empty loan.itype}"><dt><spring:message code="koha.loan.itype"/></dt><dd>${loan.itype}</dd></c:if>
+					<c:if test="${not empty loan.onloan}"><dt><spring:message code="koha.loan.onloan"/></dt><dd>${loan.onloan}</dd></c:if>
+					<c:if test="${not empty loan.biblioitemnumber}"><dt><spring:message code="biblioitems.biblioitemnumber"/></dt><dd>${loan.biblioitemnumber}</dd></c:if>
+					<c:if test="${not empty loan.wthdrawn}"><dt><spring:message code="koha.loan.withdrawn"/></dt><dd>${loan.wthdrawn}</dd></c:if>
+					<c:if test="${not empty loan.notforloan}"><dt><spring:message code="koha.loan.notforloan"/></dt><dd>${loan.notforloan}</dd></c:if>
+					<c:if test="${not empty loan.replacementpricedate}"><dt><spring:message code="koha.loan.replacementpricedate"/></dt><dd>${loan.replacementpricedate}</dd></c:if>
+					<c:if test="${not empty loan.itemcallnumber}"><dt><spring:message code="koha.loan.itemcallnumber"/></dt><dd>${loan.itemcallnumber}</dd></c:if>
+					<c:if test="${not empty loan.location}"><dt><spring:message code="koha.loan.location"/></dt><dd>${loan.location}</dd></c:if>
+					<c:if test="${not empty loan.itemlost}"><dt><spring:message code="koha.loan.itemlost"/></dt><dd>${loan.itemlost}</dd></c:if>
+					<c:if test="${not empty loan.publicationyear}"><dt><spring:message code="biblioitems.publicationyear"/></dt><dd>${loan.publicationyear}</dd></c:if>
+					<c:if test="${not empty loan.issues}"><dt><spring:message code="koha.loan.issues"/></dt><dd>${loan.issues}</dd></c:if>
+					<c:if test="${not empty loan.homebranch}"><dt><spring:message code="koha.loan.homebranch"/></dt><dd>${loan.homebranch}</dd></c:if>
+					<c:if test="${not empty loan.holdingbranch}"><dt><spring:message code="koha.loan.holdingbranch"/></dt><dd>${loan.holdingbranch}</dd></c:if>
+					<c:if test="${not empty loan.biblionumber}"><dt><spring:message code="biblio.biblionumber"/></dt><dd>${loan.biblionumber}</dd></c:if>
+					<c:if test="${not empty loan.damaged}"><dt><spring:message code="koha.loan.damaged"/></dt><dd>${loan.damaged}</dd></c:if>
+					<c:if test="${not empty loan.cn_sort}"><dt><spring:message code="koha.loan.cn_sort"/></dt><dd>${loan.cn_sort}</dd></c:if>
+					<c:if test="${not empty loan.frameworkcode}"><dt><spring:message code="biblio.frameworkcode"/></dt><dd>${loan.frameworkcode}</dd></c:if>
+					<c:if test="${not empty loan.datelastborrowed}"><dt><spring:message code="koha.loan.datelastborrowed"/></dt><dd>${loan.datelastborrowed}</dd></c:if>
+			
+			
+				</dl>
+				
+				<portlet:actionURL portletMode="VIEW" var="renewLoanUrl">
+					<portlet:param name="action" value="renewLoan" />
+					<portlet:param name="itemId" value="${loan.itemnumber}" />
+				</portlet:actionURL>
+				
+				<form method="POST" action="${renewLoanUrl}">
+					<spring:message code="renewLoan" var="renewLoanlabel" />
+				 	<input type="submit" value="${renewLoanlabel}" />
+				</form>
+				
+				</div>
+			
+			</c:forEach>
+			
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
