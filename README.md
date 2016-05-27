@@ -24,4 +24,8 @@ When publishing the portlet, you have to override/configure portlet preferences 
 * kohaDetailUrl : the url of the OPAC-DETAIL web view of your koha instance ; it's like https://koha.esup-portail.org/cgi-bin/koha/opac-detail.pl
 * kohaUserUidAttr : the portal user attribute that contains the koha User ID ; this attribute must also be configured as an user-attribute in portlet.xml so that the esup-koha portlet can effectively get the value of this attribute for the current user (asking the portal).
 
+## Screenshot
+
+![Screenshot](https://github.com/EsupPortail/esup-koha/raw/master/src/etc/esup-koha.png)
+
 
