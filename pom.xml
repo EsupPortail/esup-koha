@@ -5,7 +5,7 @@
 	<groupId>org.esupportail.koha</groupId>
 	<artifactId>esup-koha</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>esup-koha</name>
 	<properties>
 		<aspectj.version>1.7.0</aspectj.version>
