@@ -38,6 +38,16 @@
 			<value>codeBib</value>
 			<read-only>true</read-only>
 		</preference>		
+		<preference>
+			<name>kohaMainUrl</name>
+			<value>https://koha.esup-portail.org/cgi-bin/koha/opac-main.pl</value>
+			<read-only>true</read-only>
+		</preference>	
+		<preference>
+			<name>kohaDetailUrl</name>
+			<value>https://koha.esup-portail.org/cgi-bin/koha/opac-detail.pl</value>
+			<read-only>true</read-only>
+		</preference>	
 	</portlet-preferences>
 
         <!-- esupKohaAdmin and esupKohaManager roles not used at the moment -->

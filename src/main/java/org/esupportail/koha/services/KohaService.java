@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.esupportail.koha.domain.GetPatronInfo;
 import org.esupportail.koha.domain.LookupPatron;
 import org.esupportail.koha.domain.RenewLoan;
+import org.esupportail.koha.domain.CancelHold;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.CommonsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
@@ -49,13 +50,18 @@ public class KohaService {
 	}
 	
 	public GetPatronInfo getPatronInfo(String kohaIlsdiUrl, String patronId) {
-		GetPatronInfo getPatronInfo = restTemplate.getForObject(kohaIlsdiUrl + "?service=GetPatronInfo&patron_id={patronId}&show_contact=1&show_loans=1", GetPatronInfo.class, patronId);
+		GetPatronInfo getPatronInfo = restTemplate.getForObject(kohaIlsdiUrl + "?service=GetPatronInfo&patron_id={patronId}&show_contact=0&show_loans=1&show_holds=1", GetPatronInfo.class, patronId);
 		return getPatronInfo;
 	}
 
 	public RenewLoan renewLoan(String kohaIlsdiUrl, String patronId, String itemId) {
 		RenewLoan renewLoan = restTemplate.getForObject(kohaIlsdiUrl + "?service=RenewLoan&patron_id={patronId}&item_id={itemId}", RenewLoan.class, patronId, itemId);
 		return renewLoan;
+	}
+
+	public CancelHold cancelHold(String kohaIlsdiUrl, String patronId, String itemId) {
+		CancelHold cancelHold = restTemplate.getForObject(kohaIlsdiUrl + "?service=CancelHold&patron_id={patronId}&item_id={itemId}", CancelHold.class, patronId, itemId);
+		return cancelHold;
 	}
 	
 }

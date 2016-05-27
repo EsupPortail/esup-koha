@@ -77,6 +77,7 @@ public class GetPatronInfo {
 	String B_city;
 	
 	List<Loan> loans;
+	List<Hold> holds;
 	
 	public String getCategory_type() {
 		return category_type;
@@ -407,6 +408,12 @@ public class GetPatronInfo {
 	}
 	public void setLoans(List<Loan> loans) {
 		this.loans = loans;
+	}
+	public List<Hold> getHolds() {
+		return holds;
+	}
+	public void setHolds(List<Hold> holds) {
+		this.holds = holds;
 	}
 	
 }
