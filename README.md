@@ -20,6 +20,8 @@ ant deployPortletApp -DportletApp=/opt/esup-koha/target/esup-koha.war
 
 When publishing the portlet, you have to override/configure portlet preferences :
 * kohaIlsdiUrl : the url of the ILS-DI web service of your koha instance ; it's like https://koha.esup-portail.org/cgi-bin/koha/ilsdi.pl
+* kohaMainUrl : the url of the OPAC-MAIN web view of your koha instance ; it's like https://koha.esup-portail.org/cgi-bin/koha/opac-main.pl
+* kohaDetailUrl : the url of the OPAC-DETAIL web view of your koha instance ; it's like https://koha.esup-portail.org/cgi-bin/koha/opac-detail.pl
 * kohaUserUidAttr : the portal user attribute that contains the koha User ID ; this attribute must also be configured as an user-attribute in portlet.xml so that the esup-koha portlet can effectively get the value of this attribute for the current user (asking the portal).
 
 
