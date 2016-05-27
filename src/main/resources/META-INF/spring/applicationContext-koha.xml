@@ -35,9 +35,13 @@
 			<map>		
 				<entry key="LookupPatron" value="org.esupportail.koha.domain.LookupPatron" />
 				<entry key="GetPatronInfo" value="org.esupportail.koha.domain.GetPatronInfo" />		
-				<entry key="loans" value="java.util.ArrayList" />	
+				<entry key="loans" value="java.util.ArrayList" />
 				<entry key="loan" value="org.esupportail.koha.domain.Loan" />
+				<entry key="holds" value="java.util.ArrayList" />
+				<entry key="hold" value="org.esupportail.koha.domain.Hold" />
+				<entry key="item" value="org.esupportail.koha.domain.Item" />
 				<entry key="RenewLoan" value="org.esupportail.koha.domain.RenewLoan" />			
+				<entry key="CancelHold" value="org.esupportail.koha.domain.CancelHold" />			
 			</map>
 		</property>
 	</bean>
