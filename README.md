@@ -1,8 +1,8 @@
 ## Introduction
 
-esup-koha is a JSR168 portlet that displays patron information and loans information of the KOHA [http://koha-community.org] account of the portal current user.
+esup-koha is a JSR168 portlet that displays loans information and holds information of the KOHA [http://koha-community.org] account of the portal current user.
 
-The user can also renew its loans.
+The user can also renew its loans and cancel holds.
 
 ## Installation
 
